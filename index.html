@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body onload="load()">
+    <div class="home">
+        <div class="title">
+            <h1>RhythmWave</h1>
+            <div class="login">
+                <button popovertarget="myform" id="signupbutton">SIGN UP</button>
+                <button popovertarget="myformlogin" id="loginbutton">LOGIN</button>
+            </div>
+        </div>
+        <div class="carousel" >
+            <video src="./assets/images/carousel.mp4" muted autoplay loop></video>
+        </div>
+
+        <h1>recently played</h1>
+        
+        <div class="recently-played">
+            <div class="card">
+                <img src="./assets/images/carousel1.jpg" alt="img1">
+                <p>Telugu song</p>
+            </div>
+            <div class="card">
+                <img src="./assets/images/carousel1.jpg" alt="img1">
+                <p>Telugu song</p>
+            </div>
+            <div class="card">
+                <img src="./assets/images/carousel1.jpg" alt="img1">
+                <p>Telugu song</p>
+            </div>
+            <div class="card">
+                <img src="./assets/images/carousel1.jpg" alt="img1">
+                <p>Telugu song</p>
+            </div>
+        </div>
+        <h1>based on your listening</h1>
+        <div class="recently-played">
+            <div class="card">
+                <img src="./assets/images/carousel1.jpg" alt="img1">
+                <p>Telugu song</p>
+            </div>
+            <div class="card">
+                <img src="./assets/images/carousel1.jpg" alt="img1">
+                <p>Telugu song</p>
+            </div>
+            <div class="card">
+                <img src="./assets/images/carousel1.jpg" alt="img1">
+                <p>Telugu song</p>
+            </div>
+            <div class="card">
+                <img src="./assets/images/carousel1.jpg" alt="img1">
+                <p>Telugu song</p>
+            </div>
+        </div>
+    </div><div class="music-player-section">
+        <div class="current-song-name">
+            <p>Song 1</p>
+        </div>
+        <div class="music-track">
+            <input type="range" name="" id="music-track-bar" value="0">
+        </div>
+        <div class="controls">
+            <i class="fa-solid fa-arrow-rotate-right"></i>
+            <div class="main">
+            <i class="fa-solid fa-backward" ></i>
+            <i class="fa-solid fa-play" id="play"></i>
+            <i class="fa-solid fa-pause" id="pause"></i>
+            <i class="fa-solid fa-forward"></i>
+            </div>
+            <i class="fa-solid fa-volume-high"></i>
+        </div>
+    </div>
+
+    <div class="form" popover id="myform">
+        <h1>SIGNUP</h1>
+        <form action="" id="signup">
+            <input type="text" placeholder="Name" id="username" required>
+            <input type="text" placeholder="Email" id="email" required>
+            <input type="password" name="password" id="signupPassword"placeholder="Password" required>
+            <input type="password" name="conformpassword" id="conformPassword" placeholder="Conform Password" required>
+            <button onclick="signupSubmit()">SIGN UP</button>
+        </form>
+    </div>
+    <div class="loginform" popover id="myformlogin">
+        <h1>LOGIN</h1>
+        <form action="" id="login">
+            <input type="text" placeholder="Email" id="loginemail" required>
+            <input type="password" name="loginposseord" id="loginPassword"placeholder="Password" required>
+            <button onclick="sucessfullogin()">LOGIN</button>
+        </form>
+    </div>
+    
+    <script src="./app.js"></script>
+</body>
+</html>
