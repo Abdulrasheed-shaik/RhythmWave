@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body onload="load()">
+    <audio src="" id="audio-source"></audio>
     <div class="home">
         <div class="title">
             <h1>RhythmWave</h1>
             <div class="login">
+                <i class="fa-solid fa-lightbulb"></i>
                 <button popovertarget="myform" id="signupbutton">SIGN UP</button>
                 <button popovertarget="myformlogin" id="loginbutton">LOGIN</button>
             </div>
@@ -22,47 +24,14 @@
 
         <h1>recently played</h1>
         
-        <div class="recently-played">
-            <div class="card">
-                <img src="./assets/images/carousel1.jpg" alt="img1">
-                <p>Telugu song</p>
-            </div>
-            <div class="card">
-                <img src="./assets/images/carousel1.jpg" alt="img1">
-                <p>Telugu song</p>
-            </div>
-            <div class="card">
-                <img src="./assets/images/carousel1.jpg" alt="img1">
-                <p>Telugu song</p>
-            </div>
-            <div class="card">
-                <img src="./assets/images/carousel1.jpg" alt="img1">
-                <p>Telugu song</p>
-            </div>
-        </div>
+        <div class="recently-played"></div>
         <h1>based on your listening</h1>
-        <div class="recently-played">
-            <div class="card">
-                <img src="./assets/images/carousel1.jpg" alt="img1">
-                <p>Telugu song</p>
-            </div>
-            <div class="card">
-                <img src="./assets/images/carousel1.jpg" alt="img1">
-                <p>Telugu song</p>
-            </div>
-            <div class="card">
-                <img src="./assets/images/carousel1.jpg" alt="img1">
-                <p>Telugu song</p>
-            </div>
-            <div class="card">
-                <img src="./assets/images/carousel1.jpg" alt="img1">
-                <p>Telugu song</p>
-            </div>
+        <div class="basedon-played">
+            
         </div>
-    </div><div class="music-player-section">
-        <div class="current-song-name">
-            <p>Song 1</p>
-        </div>
+    </div>
+    <div class="music-player-section">
+        <h1 class="current-song-name">Song 1</h1>
         <div class="music-track">
             <input type="range" name="" id="music-track-bar" value="0">
         </div>
@@ -80,6 +49,7 @@
 
     <div class="form" popover id="myform">
         <h1>SIGNUP</h1>
+        <i class="fa-solid fa-xmark"></i>
         <form action="" id="signup">
             <input type="text" placeholder="Name" id="username" required>
             <input type="text" placeholder="Email" id="email" required>
@@ -90,13 +60,42 @@
     </div>
     <div class="loginform" popover id="myformlogin">
         <h1>LOGIN</h1>
+        <i class="fa-solid fa-xmark" id="close"></i>
         <form action="" id="login">
             <input type="text" placeholder="Email" id="loginemail" required>
             <input type="password" name="loginposseord" id="loginPassword"placeholder="Password" required>
             <button onclick="sucessfullogin()">LOGIN</button>
         </form>
     </div>
-    
+    <div class="maximize-music-player-section">
+        <div class="maximize-current-song-name">
+            <i class="fa-solid fa-angle-down"></i>
+            <div class="maximize-song-name">
+                <p>Song 1</p>
+                <p>Artist 1</p>
+            </div>
+            <img src="./assets/images/icons8-circled-menu-50.png" alt="">
+        </div>
+        <div class="maximize-poster">
+            <img src="./assets/images/carousel1.jpg" alt="">
+        </div>
+        <div class="maximize-music-track">
+            <input type="range" name="" id="maximize-music-track-bar" value="0">
+        </div>
+        <div class="maximize-controls">
+            <i class="fa-solid fa-arrow-rotate-right"></i>
+            <div class="maximize-main">
+                <i class="fa-solid fa-backward"></i>
+                <i class="fa-solid fa-play"></i>
+                <i class="fa-solid fa-pause"></i>
+                <i class="fa-solid fa-forward"></i>
+            </div>
+            <i class="fa-solid fa-volume-high"></i>
+        </div>
+    </div>
+    <script src="./data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./app.js"></script>
+
 </body>
 </html>

@@ -1,162 +1,289 @@
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* color: var(--textColor); */
 }
-:root{
-    --background:#141414;
-    --textColor:#fff;
-    --track:#63ff69;
-    
+
+
+:root {
+    --background: #141414;
+    --textColor: #fff;
+    --track: #63ff69;
+    --secondary-color: #000;
 }
-body{
-    background-color: var(--background);
+
+
+.fa-lightbulb {
+    color: goldenrod;
+    cursor: pointer;
+    font-size: 40px;
 }
-.title{
+
+
+.title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--textColor);
 }
- .title  .login{
+
+.title .login {
     margin-top: 15px;
     display: flex;
     gap: 0 50px;
     justify-content: center;
     align-items: center;
-    
 }
-button{
+
+button {
     padding: 10px 20px;
     font-size: 20px;
     border-radius: 40em;
     background-color: var(--track);
     color: var(--textColor);
-    &:hover{
-        cursor: pointer;
-    }
+    border: 2px solid var(--track);
 }
-.home{
+
+button:hover {
+    cursor: pointer;
+}
+
+
+.home {
     width: 100%;
     height: 100%;
+    display:block;
 }
-.carousel{
+
+.carousel {
     width: 100%;
     height: 70vh;
-    video{
-        width: 100%;
-        height: 100%;
-        object-fit:cover;
-    }
 }
-.home h1{
+
+.carousel video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.home h1 {
     margin: 60px 20px 30px;
     font-size: 40px;
     font-weight: bold;
     text-transform: capitalize;
-    color: var(--textColor);
-    
 }
-.recently-played{
-    position: relative;
+
+.recentlyplayed {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    /* gap: 50px; */
-    margin-bottom: 180px;
-    /* overflow-x: auto; */
-    
-    .card{
-        width: 400px;
-        height: 300px;
-        padding: 10px;
-        img{
-            width: 100%;
-            border-radius: 20px;
-        }
-        p{
-            text-align: center;
-            font-size: 25px;
-            font-weight: 900;
-            color: var(--textColor);
-        }
-    }
+    gap: 20px 50px;
+    padding: 30px;
+    margin-bottom: 100px;
+    overflow-x: scroll;
 }
-.music-player-section{
+
+.recentlyplayed::-webkit-scrollbar {
+    display: none;
+}
+
+#card {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    gap: 10px;
+    width: 400px;
+    height: 650px;
+    margin-bottom: 50px;
+    border: 2px solid black;
+    padding: 10px 30px;
+    box-shadow: 0 0 10px black;
+    border-radius: 2em;
+}
+
+#card img {
+    border-radius: 2em;
+    width: 300px;
+    height: 300px;
+    aspect-ratio: 2/3;
+    margin: 20px auto;
+}
+
+#card h2,
+#card h1 {
+    text-align: center;
+}
+.music-player-section {
     width: 100%;
     height: 150px;
     box-shadow: 0 0 10px black;
     position: fixed;
     bottom: 1px;
-    backdrop-filter: blur(50px); 
-    
+    backdrop-filter: blur(50px);
 }
-.music-player-section .controls{
+
+.music-player-section .controls {
     display: flex;
     justify-content: space-around;
     align-items: center;
     font-size: 50px;
-    color: var(--textColor);
-    
 }
-.music-player-section .controls .main{
+
+.music-player-section .controls .main {
     display: flex;
     gap: 100px;
 }
-.current-song-name p{
+
+.current-song-name {
     font-size: 30px;
     font-weight: 600;
     text-align: center;
     margin: 20px;
     text-transform: capitalize;
 }
-#music-track-bar{
-    width: 100%;
-    -webkit-appearance:none;
-    background: var(--track);
-    position: absolute;
-    top: -10px;
-    height: 10px;
 
+#music-track-bar {
+    -webkit-appearance: none;
+    width: 100%;
+    position: absolute;
+    top: -4px;
+    background: var(--secondary-color);
+    height: 8px;
 }
-.form, .loginform{
+
+#music-track-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 5px;
+    background-color: var(--track);
+    cursor: pointer;
+    box-shadow: -400 0 0 400px var(--track);
+}
+
+.form,.loginform {
     border-radius: 3em;
     position: absolute;
-    top: 10%;
-    left: 40%;
+    top: 15%;
+    left: 65%;
     width: 30%;
-    height: 80vh;
+    height: 70vh;
     box-shadow: 0 0 10px var(--background);
     background-color: var(--textColor);
     color: black;
-    form input{
-        width: 70%;
-        padding: 20px;
-        margin: 20px 80px;
-        border-radius: 10em;
-    }
-    h1{
-        color: var(--background);
-        text-align: center;
-        padding: 50px;
-    }
 }
-.loginform{
+
+.form input, .loginform input{
+    width: 70%;
+    padding: 20px;
+    margin: 20px 80px;
+    border-radius: 10em;
+}
+
+.form h1, .loginform h1{
+    text-align: center;
+    padding: 50px;
+}
+
+.fa-xmark {
+    position: absolute;
+    top: 8%;
+    right: 15%;
+    font-size: 40px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.loginform {
     width: 30%;
     height: 50vh;
+    left: 68%;
 }
-form button{
+
+form button {
     margin: 20px 230px;
     border: 2px solid var(--track);
 }
 
-form input::placeholder{
-    font-size: 20px;
-}
-form input:focus{
+form input::placeholder {
     font-size: 20px;
 }
 
+form input:focus {
+    font-size: 20px;
+}
 
+/* Maximize Music Player Section */
+.maximize-music-player-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(50px);
+}
 
+.maximize-current-song-name {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.maximize-current-song-name img {
+    width: 80px;
+}
+
+.maximize-current-song-name .fa-solid {
+    font-size: 100px;
+    cursor: pointer;
+}
+
+.maximize-current-song-name p {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin: 20px;
+    text-transform: capitalize;
+}
+
+#maximize-music-track-bar {
+    width: 100%;
+    -webkit-appearance: none;
+    background: var(--track);
+    height: 10px;
+}
+
+.maximize-controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 50px;
+}
+
+.maximize-main {
+    display: flex;
+    gap: 100px;
+}
+
+.maximize-poster {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: picrotation 4s infinite linear;
+}
+
+.maximize-poster img {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+}
+
+@keyframes picrotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

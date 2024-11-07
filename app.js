@@ -11,13 +11,24 @@
         var conformPasswordSignup = localStorage.setItem('conformPassword',conformPassword); 
     }
     else{
-        alert("Please Enter the fields.....!")
+        // Swal.fire({
+        //     icon: "error",
+        //     title: "Oops...",
+        //     text: "Enter the Fields",
+        //   });
     }
     if(signupPassword === conformPassword && userName !== "" && signupEmail !== "" && signupPassword !== "" && conformPassword!== ""){
-        alert("Registration success....!")
+        Swal.fire({
+            title: "Registration Sucess.....!!",
+            icon: "success"
+          });
     }
     else{
-        alert("Registration failed.....!")
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Registration Failed",
+          });
     }
  }
  // check login with local storage
@@ -28,16 +39,27 @@
     var emailLogin = localStorage.getItem('signupEmail')
     var passwordLogin =localStorage.getItem('signupPassword')
     if (email_login === emailLogin && password_login === passwordLogin) {
-        alert("Login success....!");
+        Swal.fire({
+            title: "Login Sucess.....!!",
+            icon: "success"
+          });
         localStorage.setItem("isLoggedIn", "true");
         document.getElementById("signupbutton").style.display = "none";
         document.getElementById("loginbutton").innerHTML = "LOG OUT";
     }
     else if(email_login===""&& password_login==""){
-        alert("enter the fields")
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Enter the Fields",
+          });
     }
     else{
-        alert("Login Failed......!")
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Login Failed",
+          });
     }
  }
 
@@ -59,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.getElementById("loginbutton").addEventListener("click", function() {
+        
         if (localStorage.getItem("isLoggedIn") === "true") {
             // Log out if already logged in
             localStorage.removeItem("isLoggedIn");
@@ -71,6 +94,12 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("myform").style.display = "none";
         }
     });
+});
+document.querySelector('.fa-xmark').addEventListener("click", function() {
+    document.querySelector('.form').style.display="none";
+});
+document.querySelector('#close').addEventListener("click", function() {
+    document.querySelector('.loginform').style.display="none";
 });
 //
 function load(){
@@ -86,3 +115,76 @@ document.getElementById("pause").addEventListener("click", function() {
     document.getElementById("pause").style.display = "none";
     document.getElementById("play").style.display = "block";
 });
+//dark and light mode
+let flag = 0;
+document.querySelector(".fa-lightbulb").addEventListener("click", function() {
+    if (flag === 0) {
+        document.body.style.backgroundColor = "white";
+        document.querySelector("body").style.color="black"
+        document.querySelector(".fa-lightbulb").style.color="black"
+        flag = 1;
+    } else {
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+        document.querySelector(".fa-lightbulb").style.color="goldenrod"
+        flag = 0;
+    }
+});
+//recentlt played and based on played
+function createSongContainer(){
+    let songContainer = document.createElement("div")
+    songContainer.className="recentlyplayed"
+    for(i=0;i<songs.length;i++){
+        songContainer.innerHTML+=`<div id="card">
+        <h1>${songs[i].songname}</h1>
+        <img src="${songs[i].cover}" />
+        <h2>${songs[i].artist}</h2>`
+    }
+    return songContainer
+}
+let recentlyPlayedContainer = createSongContainer()
+let basedOnPlayedContainer = createSongContainer()
+document.querySelector(".recently-played").appendChild(recentlyPlayedContainer)
+document.querySelector(".basedon-played").appendChild(basedOnPlayedContainer)
+
+ // Prevent the event from bubbling up
+if (localStorage.getItem("isLoggedIn") !== "true"){
+    musicPlayerSection.addEventListener('click', (event) => {
+        event.stopPropagation(); 
+    });
+}
+else{
+// Select the necessary elements
+const musicPlayerSection = document.querySelector('.music-player-section');
+const maximizeMusicPlayerSection = document.querySelector('.maximize-music-player-section');
+const angleDownIcon = document.querySelector('.fa-angle-down');
+const homeContent = document.querySelector('.home');
+
+// Initially hide the maximize music player section
+maximizeMusicPlayerSection.style.display = 'none';
+
+// Function to show the maximize music player section
+musicPlayerSection.addEventListener('click', () => {
+    // Hide the home content
+    homeContent.style.display = 'none'; 
+    musicPlayerSection.style.display = 'none';
+    maximizeMusicPlayerSection.style.display = 'flex'; 
+    maximizeMusicPlayerSection.style.opacity = 0;
+    setTimeout(() => {
+        maximizeMusicPlayerSection.style.transition = 'opacity 0.5s';
+        maximizeMusicPlayerSection.style.opacity = 1;
+    }, 10);
+});
+
+// Function to hide the maximize music player section and show the home content
+angleDownIcon.addEventListener('click', () => {
+    maximizeMusicPlayerSection.style.transition = 'opacity 0.5s';
+    maximizeMusicPlayerSection.style.opacity = 0; 
+    setTimeout(() => {
+        maximizeMusicPlayerSection.style.display = 'none';
+        musicPlayerSection.style.display = 'flex';
+        musicPlayerSection.style.flexDirection = 'column';
+        homeContent.style.display = 'block'; 
+    }, 500);
+});
+}
