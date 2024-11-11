@@ -6,92 +6,98 @@
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
-<body onload="load()">
-    <audio src="" id="audio-source"></audio>
+<body>
+    <header class="title">
+        <h1>RhythmWave</h1>
+        <div class="search-bar">
+            <input type="search" id="headerSearchBar" placeholder="Search for a song..." />
+        </div>
+        <div class="login">
+            <i class="fa-solid fa-moon"></i>
+            <button popovertarget="myform" id="signupbutton">SIGN UP</button>
+            <button popovertarget="myformlogin" id="loginbutton">LOGIN</button>
+        </div>
+    </header>
     <div class="home">
-        <div class="title">
-            <h1>RhythmWave</h1>
-            <div class="login">
-                <i class="fa-solid fa-lightbulb"></i>
-                <button popovertarget="myform" id="signupbutton">SIGN UP</button>
-                <button popovertarget="myformlogin" id="loginbutton">LOGIN</button>
-            </div>
+        <h1 class="h1" id="search-results-title" style="display: none;">Search Results</h1>
+        <div id="search-results" class="search-results"></div>
+        <div class="carousel">
+            <img src="./assets/images/Aarya.jpg" alt="album-images" id="carouselImg">
         </div>
-        <div class="carousel" >
-            <video src="./assets/images/carousel.mp4" muted autoplay loop></video>
+        
+        <div class="form" popover id="myform">
+            <h1>SIGNUP</h1>
+            <i class="fa-solid fa-xmark"></i>
+            <form action="" id="signup">
+                <input type="text" placeholder="Name" id="username" required>
+                <input type="text" placeholder="Email" id="email" required>
+                <input type="password" name="password" id="signupPassword"placeholder="Password" required>
+                <input type="password" name="conformpassword" id="conformPassword" placeholder="Conform Password" required>
+                <button onclick="signupSubmit()">SIGN UP</button>
+            </form>
         </div>
-
-        <h1>recently played</h1>
+        <div class="loginform" popover id="myformlogin">
+            <h1>LOGIN</h1>
+            <i class="fa-solid fa-xmark" id="close"></i>
+            <form action="" id="login">
+                <input type="text" placeholder="Email" id="loginemail" required>
+                <input type="password" name="loginposseord" id="loginPassword"placeholder="Password" required>
+                <button onclick="sucessfullogin()">LOGIN</button>
+            </form>
+        </div>
+        <h1 class="h1">recently played</h1>
         
         <div class="recently-played"></div>
-        <h1>based on your listening</h1>
-        <div class="basedon-played">
-            
-        </div>
+        <h1 class="h1">based on your listening</h1>
+        <div class="basedon-played"></div>
     </div>
     <div class="music-player-section">
-        <h1 class="current-song-name">Song 1</h1>
-        <div class="music-track">
-            <input type="range" name="" id="music-track-bar" value="0">
+        <div class="progess-container" id="progess-container">
+           <div class="progess" id="progess"></div>
+           <div class="duration-wrapper">
+               <span id="current-time">0:00</span>
+               <span id="duration">3:43</span>
+           </div>
         </div>
-        <div class="controls">
-            <i class="fa-solid fa-arrow-rotate-right"></i>
-            <div class="main">
-            <i class="fa-solid fa-backward" ></i>
-            <i class="fa-solid fa-play" id="play"></i>
-            <i class="fa-solid fa-pause" id="pause"></i>
-            <i class="fa-solid fa-forward"></i>
+        <audio src="./assets/music/Aa Ante Amalapuram.mp3" id="audio-source"></audio>
+        <!-- progress -->
+        <div class="minimize">
+            <div class="minimize-img">
+                <img src="./assets/images/carousel1.jpg" alt="" id="minimize-img">
             </div>
-            <i class="fa-solid fa-volume-high"></i>
+            <div class="current-song-name">
+                <h1  id="songTitle">Song 1</h1>
+            </div>
+            <div class="controls">
+                <i class="fa-solid fa-heart" id="favourate" title="Add to favourate"></i>
+                <i class="fa-solid fa-arrow-rotate-right" id="repeatSong"></i>
+                <i class="fa-solid fa-backward-step" id="prev" title="previous song"></i>
+                <i class="fa-solid fa-backward" id="backward" title="10sec reverse"></i>
+                <i class="fa-solid fa-play" id="play" title="play"></i>
+                <i class="fa-solid fa-forward" id="forward" title="10sec forward"></i>
+                <i class="fa-solid fa-forward-step" id="next" title="next song"></i>
+                <i class="fa-solid fa-volume-high"></i>
+            </div>
         </div>
-    </div>
-
-    <div class="form" popover id="myform">
-        <h1>SIGNUP</h1>
-        <i class="fa-solid fa-xmark"></i>
-        <form action="" id="signup">
-            <input type="text" placeholder="Name" id="username" required>
-            <input type="text" placeholder="Email" id="email" required>
-            <input type="password" name="password" id="signupPassword"placeholder="Password" required>
-            <input type="password" name="conformpassword" id="conformPassword" placeholder="Conform Password" required>
-            <button onclick="signupSubmit()">SIGN UP</button>
-        </form>
-    </div>
-    <div class="loginform" popover id="myformlogin">
-        <h1>LOGIN</h1>
-        <i class="fa-solid fa-xmark" id="close"></i>
-        <form action="" id="login">
-            <input type="text" placeholder="Email" id="loginemail" required>
-            <input type="password" name="loginposseord" id="loginPassword"placeholder="Password" required>
-            <button onclick="sucessfullogin()">LOGIN</button>
-        </form>
     </div>
     <div class="maximize-music-player-section">
         <div class="maximize-current-song-name">
             <i class="fa-solid fa-angle-down"></i>
             <div class="maximize-song-name">
-                <p>Song 1</p>
-                <p>Artist 1</p>
+                <p id="maximize-songTitle">Song 1</p>
+                <p id="maximize-artist">Artist 1</p>
             </div>
-            <img src="./assets/images/icons8-circled-menu-50.png" alt="">
+            <i class='bx bxs-playlist'></i>
         </div>
         <div class="maximize-poster">
-            <img src="./assets/images/carousel1.jpg" alt="">
+            <img src="./assets/images/carousel1.jpg" alt="" id="maximize-Img">
         </div>
-        <div class="maximize-music-track">
-            <input type="range" name="" id="maximize-music-track-bar" value="0">
-        </div>
-        <div class="maximize-controls">
-            <i class="fa-solid fa-arrow-rotate-right"></i>
-            <div class="maximize-main">
-                <i class="fa-solid fa-backward"></i>
-                <i class="fa-solid fa-play"></i>
-                <i class="fa-solid fa-pause"></i>
-                <i class="fa-solid fa-forward"></i>
-            </div>
-            <i class="fa-solid fa-volume-high"></i>
-        </div>
+        <div class="playlist"></div>
     </div>
     <script src="./data.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

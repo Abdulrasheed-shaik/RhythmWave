@@ -1,9 +1,15 @@
 var songs=[
     {
-        songname:'Aa Ante Amalapuram',
-        path:'assets/music/Aa Ante Amalapuram.mp3',
-        artist:'Malathi Lakshman and Ranjith',
-        cover:'assets/images/Aarya.jpg'
+        songname:'Fear Song',
+        path:'assets/music/Fear Song.mp3',
+        artist:'Anirudh Ravichander',
+        cover:'assets/images/devara.jpg'
+    },
+    {
+        songname:'Chuttamalle',
+        path:'assets/music/Chuttamalle.mp3',
+        artist:'Shilpa Rao',
+        cover:'assets/images/devara.jpg'
     },
     {
         songname:'Pranam Kanna',
@@ -13,7 +19,7 @@ var songs=[
     },
     {
         songname:'Ammo Ammayena',
-        path:'assets/music/Agar Tum Mil Jao.mp3',
+        path:'assets/music/Ammo Ammayena.mp3',
         artist:'Hariharan, Sujatha',
         cover:'assets/images/Vasantham.jpg'
     },
@@ -36,3 +42,4 @@ var songs=[
         cover:'assets/images/Aata.jpg'
     }
 ]
+
