@@ -5,6 +5,9 @@
     box-sizing: border-box;
     font-family: "League Spartan", sans-serif;
 }
+body::-webkit-scrollbar {
+    display: none;
+}
 :root {
     --background: #141414;
     --textColor: #fff;
@@ -270,7 +273,6 @@ form input:focus {
     font-size: 60px;
     cursor: pointer;
 }
-
 .maximize-current-song-name p {
     font-size: 30px;
     font-weight: 600;
@@ -278,8 +280,6 @@ form input:focus {
     margin: 20px;
     text-transform: capitalize;
 }
-
-
 .maximize-controls {
     display: flex;
     justify-content: space-around;
