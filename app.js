@@ -154,22 +154,27 @@ function createSongContainer(songs) {
     // Loop through the songs and create a card for each
     for (let i = 0; i < songs.length; i++) {
         const songCard = document.createElement("div");
-        songCard.id = "card";
+        songCard.className = "card";  // Changed from ID to class for multiple cards
         
         songCard.innerHTML = `
             <h1>${songs[i].songname}</h1>
-            <img src="${songs[i].cover}" />
+            <img src="${songs[i].cover}" alt="${songs[i].songname} cover" />
             <h2>${songs[i].artist}</h2>
         `;
         
         // Add click event listener to each card
-        songCard.addEventListener("click", () => playSong(i)); // Pass the index to play the song
+        songCard.addEventListener("click", () => {
+            loadSong(songs[i]);  // Load the selected song
+            playSong();          // Play the song
+            maximizeFunction();
+        });
 
         // Append the song card to the song container
         songContainer.appendChild(songCard);
     }
     return songContainer;
 }
+
 
 // Create song containers for recently played and based on played
 let recentlyPlayedContainer = createSongContainer(songs);
@@ -180,34 +185,9 @@ document.querySelector(".recently-played").appendChild(recentlyPlayedContainer);
 document.querySelector(".basedon-played").appendChild(basedOnPlayedContainer);
 
 // Function to play a song by index
-function playSong(songIndex) {
-    const selectedSong = songs[songIndex];
-    
-    // Update audio source and UI elements
-    const audio = document.getElementById("audio-source");
-    const songTitle = document.getElementById("songTitle");
-    const maximizeSongTitle = document.getElementById("maximize-songTitle");
-    const maximizeArtist = document.getElementById("maximize-artist");
-    const minimizeImg = document.getElementById("minimize-img");
-    const maximizeImg = document.getElementById("maximize-Img");
-
-    audio.src = selectedSong.path;
-    songTitle.textContent = selectedSong.songname;
-    maximizeSongTitle.textContent = selectedSong.songname;
-    maximizeArtist.textContent = selectedSong.artist;
-    minimizeImg.src = selectedSong.cover;
-    maximizeImg.src = selectedSong.cover;
-
-    // Play the song
-    audio.play();
-
-    // Update play button to show pause icon
-    document.getElementById("play").classList.remove("fa-play");
-    document.getElementById("play").classList.add("fa-pause");
-}
 
 
- // Prevent the event from bubbling up
+// Prevent the event from bubbling up
 if (localStorage.getItem("isLoggedIn") !== "true"){
     musicPlayerSection.addEventListener('click', (event) => {
         event.stopPropagation(); 
@@ -215,39 +195,39 @@ if (localStorage.getItem("isLoggedIn") !== "true"){
 }
 else{
     // Select the necessary elements
-const musicPlayerSection = document.querySelector('.current-song-name');
-const maximizeMusicPlayerSection = document.querySelector('.maximize-music-player-section');
-const angleDownIcon = document.querySelector('.fa-angle-down');
-const homeContent = document.querySelector('.home');
-
-// Initially hide the maximize music player section
-maximizeMusicPlayerSection.style.display = 'none';
-
-// Function to show the maximize music player section
-
-function maximizeFunction(){
-    // Hide the home content
-    homeContent.style.display = 'none'; 
-    musicPlayerSection.style.display = 'none';
-    maximizeMusicPlayerSection.style.display = 'flex'; 
-    maximizeMusicPlayerSection.style.opacity = 0;
-    document.querySelector('header').style.display='none'
-    setTimeout(() => {
+    const musicPlayerSection = document.querySelector('.current-song-name');
+    const maximizeMusicPlayerSection = document.querySelector('.maximize-music-player-section');
+    const angleDownIcon = document.querySelector('.fa-angle-down');
+    const homeContent = document.querySelector('.home');
+    
+    // Initially hide the maximize music player section
+    maximizeMusicPlayerSection.style.display = 'none';
+    
+    // Function to show the maximize music player section
+    
+    function maximizeFunction(){
+        // Hide the home content
+        homeContent.style.display = 'none'; 
+        musicPlayerSection.style.display = 'none';
+        maximizeMusicPlayerSection.style.display = 'flex'; 
+        maximizeMusicPlayerSection.style.opacity = 0;
+        document.querySelector('header').style.display='none'
+        setTimeout(() => {
+            maximizeMusicPlayerSection.style.transition = 'opacity 0.5s';
+            maximizeMusicPlayerSection.style.opacity = 1;
+        }, 10);
+    }
+    function angleDownFunction(){
         maximizeMusicPlayerSection.style.transition = 'opacity 0.5s';
-        maximizeMusicPlayerSection.style.opacity = 1;
-    }, 10);
-}
-function angleDownFunction(){
-    maximizeMusicPlayerSection.style.transition = 'opacity 0.5s';
-    maximizeMusicPlayerSection.style.opacity = 0; 
-    setTimeout(() => {
-        maximizeMusicPlayerSection.style.display = 'none';
-        musicPlayerSection.style.display = 'flex';
-        musicPlayerSection.style.flexDirection = 'column';
-        homeContent.style.display = 'block'; 
-        document.querySelector('header').style.display='flex'
-    }, 500);       
-}
+        maximizeMusicPlayerSection.style.opacity = 0; 
+        setTimeout(() => {
+            maximizeMusicPlayerSection.style.display = 'none';
+            musicPlayerSection.style.display = 'flex';
+            musicPlayerSection.style.flexDirection = 'column';
+            homeContent.style.display = 'block'; 
+            document.querySelector('header').style.display='flex'
+        }, 500);       
+    }
 // Function to hide the maximize music player section and show the home content
 musicPlayerSection.addEventListener('click', maximizeFunction);
 angleDownIcon.addEventListener('click', angleDownFunction);
@@ -279,7 +259,6 @@ let isPlaying = false
 function playSong(){
     isPlaying = true
     playBtn.classList.replace('fa-play', 'fa-pause')
-    // maximizeplayBtn.classList.replace('fa-play', 'fa-pause')
     playBtn.setAttribute('title','pause')
     music.play()
     imageContainer.style.animationPlayState = 'running';
@@ -434,30 +413,30 @@ addFavourite.addEventListener('click', function() {
 });
 
 // playlist
-let play=0
-    document.querySelector('.bxs-playlist').addEventListener('click',function(){
-        if(play==0){
-            document.querySelector('.playlist').style.display="flex"
-            play=1
-        }
-        else{
-            document.querySelector('.playlist').style.display="none"
-            play=0
-        }
-        
-    })
+let play = 0;
+document.querySelector('.bxs-playlist').addEventListener('click', function() {
+    const playlist = document.querySelector('.playlist');
+    if (play === 0) {
+        playlist.style.display = "flex";
+        play = 1;
+    } else {
+        playlist.style.display = "none";
+        play = 0;
+    }
+});
+
 function addPlay() {
     let addPlayList = document.createElement("div");
     addPlayList.className = "playlistadd";
     for (let i = 0; i < songs.length; i++) {
         addPlayList.innerHTML += `
-            <div id="playlistcard" data-song-index="${i}">
-                <img src="${songs[i].cover}" />
+            <div class="playlistcard" data-song-index="${i}">
+                <img src="${songs[i].cover}" alt="${songs[i].songname} cover image" />
                 <marquee behavior="" width="30%" direction="left" height="30px">
                     <h2>${songs[i].songname}</h2>
                 </marquee>
-                <i class="fa-solid fa-heart" id="favourite" title="Add to favourite"></i>
-                <i class="fa-solid fa-play" id="play" title="play"></i>
+                <i class="fa-solid fa-heart favourite" title="Add to favourite"></i>
+                <i class="fa-solid fa-play play" title="play"></i>
             </div>`;
     }
     return addPlayList;
@@ -466,15 +445,21 @@ function addPlay() {
 let add = addPlay();
 document.querySelector('.playlist').appendChild(add);
 
-// Add an event listener to each song card to load and play the selected song
-document.querySelectorAll('#playlistcard').forEach((card) => {
-    card.addEventListener('click', function () {
-        let songIndex = this.getAttribute('data-song-index');
-        loadSong(songs[songIndex]);  // Load the selected song
-        playSong();                   // Play the song
-        maximizeFunction();           // Maximize the play section to occupy the whole screen
+// Add an event listener to each song card after the playlist is added
+function addPlaylistListeners() {
+    document.querySelectorAll('.playlistcard').forEach((card) => {
+        card.addEventListener('click', function () {
+            let songIndex = this.getAttribute('data-song-index');
+            loadSong(songs[songIndex]);  // Use songIndex to load the selected song
+            playSong();                  // Play the song
+            maximizeFunction();          // Maximize the play section to occupy the whole screen
+        });
     });
-});
+}
+
+// Ensure the event listeners are added after the playlist is appended
+addPlaylistListeners();
+
 
 // Function to render songs to the search results section
 function renderSearchResults(songs) {
@@ -501,74 +486,17 @@ function renderSearchResults(songs) {
                     <h3>${song.artist}</h3>
                 </div>
             `;
-            
-            // Add click event to play the song
-            songCard.addEventListener("click", () => playSong(index));
             searchResultsDiv.appendChild(songCard);
-        });
-    }
-}
-
-// Function to render songs to the search results section
-function renderSearchResults(songs) {
-    const searchResultsDiv = document.getElementById("search-results");
-    const searchResultsTitle = document.getElementById("search-results-title");
-    
-    searchResultsDiv.innerHTML = ""; // Clear existing content
-    
-    if (songs.length === 0) {
-        searchResultsTitle.style.display = "none"; // Hide title if no results
-        searchResultsDiv.style.display = "none"; // Hide results div if no results
-    } else {
-        searchResultsTitle.style.display = "block"; // Show title if results are present
-        searchResultsDiv.style.display = "flex"; // Show results div if results are present
         
-        // Render each song in search results
-        songs.forEach((song, index) => {
-            const songCard = document.createElement("div");
-            songCard.className = "song-card";
-            songCard.innerHTML = `
-                <img src="${song.cover}" alt="${song.songname}" class="song-cover" />
-                <div class="song-details">
-                    <h2>${song.songname}</h2>
-                    <h3>${song.artist}</h3>
-                </div>
-            `;
-            
-            // Add click event to play the song
-            songCard.addEventListener("click", () => playSong(index));
-            searchResultsDiv.appendChild(songCard);
+            songCard.addEventListener('click', function() {
+                loadSong(songs[index]);  // Load the selected song
+                playSong();              // Play the song
+                maximizeFunction();    // Maximize the play section
+            });
         });
+        
     }
 }
-
-// Function to play a song by index
-function playSong(songIndex) {
-    const selectedSong = songs[songIndex];
-    
-    // Update audio source and UI elements
-    const audio = document.getElementById("audio-source");
-    const songTitle = document.getElementById("songTitle");
-    const maximizeSongTitle = document.getElementById("maximize-songTitle");
-    const maximizeArtist = document.getElementById("maximize-artist");
-    const minimizeImg = document.getElementById("minimize-img");
-    const maximizeImg = document.getElementById("maximize-Img");
-
-    audio.src = selectedSong.path;
-    songTitle.textContent = selectedSong.songname;
-    maximizeSongTitle.textContent = selectedSong.songname;
-    maximizeArtist.textContent = selectedSong.artist;
-    minimizeImg.src = selectedSong.cover;
-    maximizeImg.src = selectedSong.cover;
-
-    // Play the song
-    audio.play();
-
-    // Update play button to show pause icon
-    document.getElementById("play").classList.remove("fa-play");
-    document.getElementById("play").classList.add("fa-pause");
-}
-
 // Add event listener to header search bar
 document.getElementById("headerSearchBar").addEventListener("input", function () {
     const searchTerm = this.value.toLowerCase();
@@ -587,7 +515,4 @@ document.getElementById("headerSearchBar").addEventListener("input", function ()
         renderSearchResults(filteredSongs);
     }
 });
-
-
-
 

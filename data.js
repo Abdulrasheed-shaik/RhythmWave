@@ -12,6 +12,12 @@ var songs=[
         cover:'assets/images/devara.jpg'
     },
     {
+        songname:'Aa Ante Amalapuram',
+        path:'assets/music/Aa Ante Amalapuram.mp3',
+        artist:'Malathy Lakshman and Ranjith',
+        cover:'assets/images/Aarya.jpg'
+    },
+    {
         songname:'Pranam Kanna',
         path:'assets/music/Pranam Kanna.mp3',
         artist:'Aditi Bhavaraju',
