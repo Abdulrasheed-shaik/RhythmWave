@@ -6,10 +6,34 @@ var songs=[
         cover:'assets/images/devara.jpg'
     },
     {
+        songname:'	Nindu Noorella Savasam',
+        path:'assets/music/Nindu-Noorella-Savasam.mp3',
+        artist:'Sonu Nigam, Mahalakshmi Iyer',
+        cover:'assets/images/Nindu-Noorella.jpg'
+    },
+    {
         songname:'Chuttamalle',
         path:'assets/music/Chuttamalle.mp3',
         artist:'Shilpa Rao',
         cover:'assets/images/devara.jpg'
+    },
+    {
+        songname:'Allantha Doorala',
+        path:'assets/music/Allantha Doorala.mp3',
+        artist:'S.P.Balu',
+        cover:'assets/images/Allantha Doorala.jpg'
+    },
+    {
+        songname:'Cheppave Chirugali',
+        path:'assets/music/Cheppave Chirugali.mp3',
+        artist:'Udit Narayan, Sujatha Mohan',
+        cover:'assets/images/cheppave chirugali.jpg'
+    },
+    {
+        songname:'Yemaindhi Ee Vela',
+        path:'assets/music/Yemaindhi Ee Vela.mp3',
+        artist:' Udit Narayan, Chorus',
+        cover:'assets/images/Aadavari matalaku ardhale verule.jpg'
     },
     {
         songname:'Aa Ante Amalapuram',
