@@ -197,7 +197,7 @@ button:hover {
     left: 65%;
     width: 30%;
     height: 70vh;
-    box-shadow: 0 0 10px var(--background);
+    box-shadow: 0 0 2px var(--background);
     background-color: var(--textColor);
     color: black;
 }

@@ -94,7 +94,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-
+document.querySelector('.fa-xmark').addEventListener('click',()=>{
+    document.querySelector('.form').style.display='none';
+})
+document.querySelector('#close').addEventListener('click',()=>{
+    document.querySelector('.loginform').style.display='none';
+})
 // Restrict access to the music player if not logged in
 function maximizeFunction() {
     if (localStorage.getItem("isLoggedIn") === "true") {
