@@ -201,6 +201,9 @@ button:hover {
     background-color: var(--textColor);
     color: black;
 }
+.form::-webkit-scrollbar,.loginform::-webkit-scrollbar {
+    display: none;
+}
 
 .form input, .loginform input{
     width: 70%;
@@ -266,9 +269,6 @@ form input:focus {
     justify-content: space-around;
     align-items: center;
 }
-
-
-
 .maximize-current-song-name .fa-solid, .bxs-playlist {
     font-size: 60px;
     cursor: pointer;
@@ -419,5 +419,11 @@ form input:focus {
     font-size: 50px;
     text-align: center;
     
+}
+.search-results{
+    overflow-x: scroll;
+}
+.search-results::-webkit-scrollbar {
+    display: none;
 }
  
